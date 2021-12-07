@@ -11,16 +11,30 @@
 .row {
   display: flex;
   flex-wrap: wrap;
+  flex-basis: calc(100% / 2);
 }
 
 .column-full,
 .column-half {
+  margin-top: 1rem;
   width: 100%;
 }
 
 @media screen and (min-width: 768px) {
+  h1 {
+    margin-left: 0.75rem;
+  }
+
+  .purp-header {
+    margin-left: 0.75rem;
+  }
+
   .container {
     max-width: 900px;
+  }
+
+  .column-full {
+    margin-top: 1.5rem;
   }
 
   .column-full,
