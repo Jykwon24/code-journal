@@ -2,11 +2,15 @@
   display: none !important;
 }
 
-.container,
-.new-row {
+.container {
   max-width: 575px;
   margin: 0 auto;
   padding: 0 1.5rem;
+}
+
+.new-row {
+  margin: auto;
+  padding: 0;
 }
 
 .row,
@@ -16,14 +20,16 @@
   flex-basis: calc(100% / 2);
 }
 
-.ul-entry {
-  width: 100%;
-}
-
 .column-full,
 .column-half {
   margin-top: 1rem;
   width: 100%;
+}
+
+.ul-entry {
+  width: 100%;
+  padding-left: 26px;
+  padding-right: 26px;
 }
 
 @media screen and (min-width: 768px) {
@@ -35,7 +41,8 @@
     margin-left: 0.75rem;
   }
 
-  .container {
+  .container,
+  .ul-entry {
     max-width: 900px;
   }
 
