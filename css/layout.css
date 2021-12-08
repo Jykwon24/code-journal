@@ -2,16 +2,22 @@
   display: none !important;
 }
 
-.container {
+.container,
+.new-row {
   max-width: 575px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.row {
+.row,
+.new-row {
   display: flex;
   flex-wrap: wrap;
   flex-basis: calc(100% / 2);
+}
+
+.ul-entry {
+  width: 100%;
 }
 
 .column-full,
