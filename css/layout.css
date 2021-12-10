@@ -2,15 +2,25 @@
   display: none !important;
 }
 
-.container {
+.container,
+.heading-container {
   max-width: 575px;
   margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.entry-title {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 0 1.5rem;
 }
 
 .new-row {
   margin: auto;
   padding: 0;
+  margin-bottom: 2rem;
 }
 
 .row,
@@ -42,6 +52,7 @@
   }
 
   .container,
+  .heading-container,
   .ul-entry {
     max-width: 900px;
   }

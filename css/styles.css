@@ -19,17 +19,32 @@ label {
 h1 {
   font-family: sans-serif;
   font-weight: 500;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 10px;
 }
 
-.purp-header {
+.purp-header,
+.purp-header1,
+.entry-header {
   display: inline-block;
   color: white;
   font-family: sans-serif;
   font-weight: 400;
   letter-spacing: 1px;
   text-decoration: none;
+  margin-left: 0.5rem;
+}
+
+.purp-header1 {
+  background-color: #4e148c;
+  border-radius: 0.25rem;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-family: sans-serif;
+  font-weight: 300;
 }
 
 .heading {

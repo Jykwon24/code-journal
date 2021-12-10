@@ -93,3 +93,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
 });
+
+var $navHeader = document.querySelector('.entry-header');
+var $formContainer = document.querySelector('.container');
+var $entryList = document.getElementById('entry-list');
+
+$navHeader.addEventListener('click', function (event) {
+  $formContainer.className = 'hidden';
+  $entryList.className = 'new-row container';
+});
