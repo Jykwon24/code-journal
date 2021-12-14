@@ -16,14 +16,15 @@
 
 <body>
   <header>
-    <div class="container">
+    <div class="heading-container">
       <h3 class="purp-header">Code Journal</h3>
+      <h4 class="purp-header"><a class="entry-header" href="#">Entries</a></h4>
     </div>
   </header>
   <main>
     <div class="container" data-view="entry-form">
-      <h1>New Entry</h1>
       <form id="form-entry">
+        <h1>New Entry</h1>
         <div class="row">
           <div class="column-half">
             <img class="img-container" src="images/placeholder-image-square.jpg" alt="photo-url-input">
@@ -50,7 +51,19 @@
         </div>
 
       </form>
+    </div>
+    <div id="entry-list" class="new-row container hidden" data-view="entries">
+      <div class="entry-title">
+        <h1>Entries</h1>
+        <a class="purp-header1" href="#">NEW</a>
+      </div>
+      <div class="container entries">
+        <p>No entries have been recorded.</p>
+      </div>
+      <ul id="list-items" class="ul-entry list-style">
 
+
+      </ul>
 
     </div>
   </main>

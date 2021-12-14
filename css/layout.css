@@ -2,13 +2,33 @@
   display: none !important;
 }
 
-.container {
+.container,
+.heading-container {
   max-width: 575px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.row {
+.heading-container {
+  height: 60px;
+}
+
+.entry-title {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+.new-row {
+  margin: auto;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.row,
+.new-row {
   display: flex;
   flex-wrap: wrap;
   flex-basis: calc(100% / 2);
@@ -20,6 +40,12 @@
   width: 100%;
 }
 
+.ul-entry {
+  width: 100%;
+  padding-left: 26px;
+  padding-right: 26px;
+}
+
 @media screen and (min-width: 768px) {
   h1 {
     margin-left: 0.75rem;
@@ -29,7 +55,9 @@
     margin-left: 0.75rem;
   }
 
-  .container {
+  .container,
+  .heading-container,
+  .ul-entry {
     max-width: 900px;
   }
 
