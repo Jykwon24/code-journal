@@ -12,6 +12,7 @@ $photoUrl.addEventListener('input', function (event) {
 function journalEntry(entry) {
   var $containerDiv = document.createElement('div');
   $containerDiv.setAttribute('class', 'new-row');
+  $containerDiv.setAttribute('data-entry-id', entry.entryId);
 
   var $columnDiv1 = document.createElement('div');
   $columnDiv1.setAttribute('class', 'column-half');
@@ -24,9 +25,12 @@ function journalEntry(entry) {
   $entryImg.setAttribute('src', entry.photoUrl);
 
   var $entryTitle = document.createElement('h2');
+  var $editIcon = document.createElement('i');
   $entryTitle.setAttribute('class', 'list-style');
+  $editIcon.setAttribute('class', 'fas fa-pen');
   var $titleTxt = document.createTextNode(entry.title);
   $entryTitle.appendChild($titleTxt);
+  $entryTitle.appendChild($editIcon);
 
   var $entryContent = document.createElement('p');
   $entryContent.setAttribute('class', 'list-style');
