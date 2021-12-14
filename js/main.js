@@ -56,6 +56,7 @@ $form.addEventListener('submit', function (event) {
   journalObj.notes = $form.elements.notes.value;
   journalObj.entryId = data.nextEntryId++;
   data.entries.unshift(journalObj);
+  data.view = 'entries';
   var localDataModel = JSON.stringify(data);
   localStorage.setItem('data-model', localDataModel);
   prependToList(journalObj);
@@ -71,6 +72,27 @@ document.addEventListener('DOMContentLoaded', function (event) {
     var result = journalEntry(data.entries[i]);
     $ul.appendChild(result);
   }
+  if (data.view === 'entries') {
+    $formContainer.className = 'hidden';
+    $entryList.className = 'new-row container';
+  } else {
+    $entryList.className = 'hidden';
+    $formContainer.className = 'container';
+  }
+  var isEntriesEmpty = true;
+  var previousDataModel = localStorage.getItem('data-model');
+  if (previousDataModel != null) {
+    isEntriesEmpty = false;
+    var parsedData = JSON.parse(previousDataModel);
+    if (parsedData.entries.length > 0) {
+      isEntriesEmpty = false;
+    } else {
+      isEntriesEmpty = true;
+    }
+  }
+  if (!isEntriesEmpty) {
+    $entries.className = 'hidden';
+  }
 });
 
 var $navHeader = document.querySelector('.entry-header');
@@ -81,6 +103,9 @@ var $entries = document.querySelector('.entries');
 $navHeader.addEventListener('click', function (event) {
   $formContainer.className = 'hidden';
   $entryList.className = 'new-row container';
+  data.view = 'entries';
+  var localDataModel = JSON.stringify(data);
+  localStorage.setItem('data-model', localDataModel);
   var isEntriesEmpty = true;
   var previousDataModel = localStorage.getItem('data-model');
   if (previousDataModel != null) {
@@ -102,6 +127,9 @@ var $newButton = document.querySelector('.purp-header1');
 $newButton.addEventListener('click', function (event) {
   $entryList.className = 'hidden';
   $formContainer.className = 'container';
+  data.view = 'entry-form';
+  var localDataModel = JSON.stringify(data);
+  localStorage.setItem('data-model', localDataModel);
 });
 
 // var $containerDiv = document.createElement('div');

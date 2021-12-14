@@ -23,6 +23,10 @@ h1 {
   margin-bottom: 10px;
 }
 
+h4 {
+  margin-left: 0.5rem;
+}
+
 .purp-header,
 .purp-header1,
 .entry-header {
@@ -32,7 +36,6 @@ h1 {
   font-weight: 400;
   letter-spacing: 1px;
   text-decoration: none;
-  margin-left: 0.5rem;
   height: 30px;
 }
 
