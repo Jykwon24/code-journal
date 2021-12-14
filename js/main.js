@@ -57,8 +57,6 @@ $form.addEventListener('submit', function (event) {
   journalObj.entryId = data.nextEntryId++;
   data.entries.unshift(journalObj);
   data.view = 'entries';
-  var localDataModel = JSON.stringify(data);
-  localStorage.setItem('data-model', localDataModel);
   prependToList(journalObj);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $formContainer.className = 'hidden';
@@ -79,19 +77,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
     $entryList.className = 'hidden';
     $formContainer.className = 'container';
   }
-  var isEntriesEmpty = true;
-  var previousDataModel = localStorage.getItem('data-model');
-  if (previousDataModel != null) {
-    isEntriesEmpty = false;
-    var parsedData = JSON.parse(previousDataModel);
-    if (parsedData.entries.length > 0) {
-      isEntriesEmpty = false;
-    } else {
-      isEntriesEmpty = true;
-    }
-  }
-  if (!isEntriesEmpty) {
+  if (data.entries.length > 0) {
     $entries.className = 'hidden';
+  } else {
+    $entries.className = 'container entries';
   }
 });
 
@@ -104,22 +93,10 @@ $navHeader.addEventListener('click', function (event) {
   $formContainer.className = 'hidden';
   $entryList.className = 'new-row container';
   data.view = 'entries';
-  var localDataModel = JSON.stringify(data);
-  localStorage.setItem('data-model', localDataModel);
-  var isEntriesEmpty = true;
-  var previousDataModel = localStorage.getItem('data-model');
-  if (previousDataModel != null) {
-    isEntriesEmpty = false;
-    var parsedData = JSON.parse(previousDataModel);
-    if (parsedData.entries.length > 0) {
-      isEntriesEmpty = false;
-    } else {
-      isEntriesEmpty = true;
-    }
-  }
-
-  if (!isEntriesEmpty) {
+  if (data.entries.length > 0) {
     $entries.className = 'hidden';
+  } else {
+    $entries.className = 'container entries';
   }
 });
 
@@ -128,8 +105,6 @@ $newButton.addEventListener('click', function (event) {
   $entryList.className = 'hidden';
   $formContainer.className = 'container';
   data.view = 'entry-form';
-  var localDataModel = JSON.stringify(data);
-  localStorage.setItem('data-model', localDataModel);
 });
 
 // var $containerDiv = document.createElement('div');
