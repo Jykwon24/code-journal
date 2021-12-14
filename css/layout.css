@@ -9,6 +9,10 @@
   padding: 0 1.5rem;
 }
 
+.heading-container {
+  height: 60px;
+}
+
 .entry-title {
   width: 100%;
   display: flex;

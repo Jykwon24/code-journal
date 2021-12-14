@@ -5,7 +5,7 @@ header {
 }
 
 main {
-  height: 1200px;
+  height: 100%;
   padding-top: 1px;
   background-color: lightgrey;
 }
@@ -33,6 +33,11 @@ h1 {
   letter-spacing: 1px;
   text-decoration: none;
   margin-left: 0.5rem;
+  height: 30px;
+}
+
+.entries {
+  height: 600px;
 }
 
 .purp-header1 {
@@ -79,6 +84,7 @@ h1 {
 .button-container {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 2rem;
 }
 
 .button {

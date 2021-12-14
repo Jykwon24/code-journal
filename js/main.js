@@ -9,6 +9,43 @@ $photoUrl.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
 });
 
+function journalEntry(entry) {
+  var $containerDiv = document.createElement('div');
+  $containerDiv.setAttribute('class', 'new-row');
+
+  var $columnDiv1 = document.createElement('div');
+  $columnDiv1.setAttribute('class', 'column-half');
+
+  var $columnDiv2 = document.createElement('div');
+  $columnDiv2.setAttribute('class', 'column-half');
+
+  var $entryImg = document.createElement('img');
+  $entryImg.setAttribute('class', 'img-container');
+  $entryImg.setAttribute('src', entry.photoUrl);
+
+  var $entryTitle = document.createElement('h2');
+  $entryTitle.setAttribute('class', 'list-style');
+  var $titleTxt = document.createTextNode(entry.title);
+  $entryTitle.appendChild($titleTxt);
+
+  var $entryContent = document.createElement('p');
+  $entryContent.setAttribute('class', 'list-style');
+  var $entryNotes = document.createTextNode(entry.notes);
+  $entryContent.appendChild($entryNotes);
+
+  $containerDiv.appendChild($columnDiv1);
+  $containerDiv.appendChild($columnDiv2);
+  $columnDiv1.appendChild($entryImg);
+  $columnDiv2.appendChild($entryTitle);
+  $columnDiv2.appendChild($entryContent);
+  return $containerDiv;
+}
+
+function prependToList(entry) {
+  var result = journalEntry(entry);
+  $ul.prepend(result);
+}
+
 var $form = document.getElementById('form-entry');
 
 $form.addEventListener('submit', function (event) {
@@ -19,8 +56,52 @@ $form.addEventListener('submit', function (event) {
   journalObj.notes = $form.elements.notes.value;
   journalObj.entryId = data.nextEntryId++;
   data.entries.unshift(journalObj);
+  var localDataModel = JSON.stringify(data);
+  localStorage.setItem('data-model', localDataModel);
+  prependToList(journalObj);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $formContainer.className = 'hidden';
+  $entryList.className = 'new-row container';
+  $entries.className = 'hidden';
   $form.reset();
+});
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    var result = journalEntry(data.entries[i]);
+    $ul.appendChild(result);
+  }
+});
+
+var $navHeader = document.querySelector('.entry-header');
+var $formContainer = document.querySelector('.container');
+var $entryList = document.getElementById('entry-list');
+var $entries = document.querySelector('.entries');
+
+$navHeader.addEventListener('click', function (event) {
+  $formContainer.className = 'hidden';
+  $entryList.className = 'new-row container';
+  var isEntriesEmpty = true;
+  var previousDataModel = localStorage.getItem('data-model');
+  if (previousDataModel != null) {
+    isEntriesEmpty = false;
+    var parsedData = JSON.parse(previousDataModel);
+    if (parsedData.entries.length > 0) {
+      isEntriesEmpty = false;
+    } else {
+      isEntriesEmpty = true;
+    }
+  }
+
+  if (!isEntriesEmpty) {
+    $entries.className = 'hidden';
+  }
+});
+
+var $newButton = document.querySelector('.purp-header1');
+$newButton.addEventListener('click', function (event) {
+  $entryList.className = 'hidden';
+  $formContainer.className = 'container';
 });
 
 // var $containerDiv = document.createElement('div');
@@ -54,51 +135,3 @@ $form.addEventListener('submit', function (event) {
 // $columnDiv2.appendChild($entryContent);
 
 // console.log($containerDiv);
-function journalEntry(entry) {
-  var $containerDiv = document.createElement('div');
-  $containerDiv.setAttribute('class', 'new-row');
-
-  var $columnDiv1 = document.createElement('div');
-  $columnDiv1.setAttribute('class', 'column-half');
-
-  var $columnDiv2 = document.createElement('div');
-  $columnDiv2.setAttribute('class', 'column-half');
-
-  var $entryImg = document.createElement('img');
-  $entryImg.setAttribute('class', 'img-container');
-  $entryImg.setAttribute('src', entry.photoUrl);
-
-  var $entryTitle = document.createElement('h2');
-  $entryTitle.setAttribute('class', 'list-style');
-  var $titleTxt = document.createTextNode(entry.title);
-  $entryTitle.appendChild($titleTxt);
-
-  var $entryContent = document.createElement('p');
-  $entryContent.setAttribute('class', 'list-style');
-  var $entryNotes = document.createTextNode(entry.notes);
-  $entryContent.appendChild($entryNotes);
-
-  $containerDiv.appendChild($columnDiv1);
-  $containerDiv.appendChild($columnDiv2);
-  $columnDiv1.appendChild($entryImg);
-  $columnDiv2.appendChild($entryTitle);
-  $columnDiv2.appendChild($entryContent);
-  return $containerDiv;
-}
-
-document.addEventListener('DOMContentLoaded', function (event) {
-  for (var i = 0; i < data.entries.length; i++) {
-    var result = journalEntry(data.entries[i]);
-    $ul.appendChild(result);
-  }
-
-});
-
-var $navHeader = document.querySelector('.entry-header');
-var $formContainer = document.querySelector('.container');
-var $entryList = document.getElementById('entry-list');
-
-$navHeader.addEventListener('click', function (event) {
-  $formContainer.className = 'hidden';
-  $entryList.className = 'new-row container';
-});
