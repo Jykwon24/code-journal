@@ -27,12 +27,12 @@ h4 {
   margin-left: 0.5rem;
 }
 
-#edit-button {
+.edit-button {
   color: mediumslateblue;
   padding-top: 20px;
 }
 
-#edit-button:hover {
+.edit-button:hover {
   color: #4e148c;
   cursor: pointer;
 }

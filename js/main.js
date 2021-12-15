@@ -30,8 +30,8 @@ function journalEntry(entry) {
   var $entryTitle = document.createElement('h2');
   var $editIcon = document.createElement('i');
   $entryTitle.setAttribute('class', 'list-style');
-  $editIcon.setAttribute('class', 'fas fa-pen');
-  $editIcon.setAttribute('ID', 'edit-button');
+  $editIcon.setAttribute('class', 'fas fa-pen edit-button');
+  $editIcon.setAttribute('data-entry-id', entry.entryId);
   var $titleTxt = document.createTextNode(entry.title);
   $entryTitle.appendChild($titleTxt);
 
@@ -117,10 +117,17 @@ $newButton.addEventListener('click', function (event) {
 });
 
 $ul.addEventListener('click', function (event) {
-  var $editEntry = document.getElementById('edit-button');
+  var $editEntry = document.querySelector('.edit-button');
+  var $entryNumOnClick = parseInt(event.target.getAttribute('data-entry-id'));
   if (event.target === $editEntry) {
     $entryList.className = 'hidden';
     $formContainer.className = 'container';
+  }
+  for (var i = 0; i < data.entries.length; i++) {
+    var dataArr = data.entries[i].entryId;
+    if ($entryNumOnClick === dataArr) {
+      data.editing = $entryNumOnClick;
+    }
   }
 });
 
