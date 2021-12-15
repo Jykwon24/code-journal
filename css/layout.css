@@ -46,6 +46,12 @@
   padding-right: 26px;
 }
 
+.edit-style {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+}
+
 @media screen and (min-width: 768px) {
   h1 {
     margin-left: 0.75rem;

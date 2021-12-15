@@ -20,6 +20,9 @@ function journalEntry(entry) {
   var $columnDiv2 = document.createElement('div');
   $columnDiv2.setAttribute('class', 'column-half');
 
+  var $titleEditContainer = document.createElement('div');
+  $titleEditContainer.setAttribute('class', 'edit-style');
+
   var $entryImg = document.createElement('img');
   $entryImg.setAttribute('class', 'img-container');
   $entryImg.setAttribute('src', entry.photoUrl);
@@ -28,9 +31,9 @@ function journalEntry(entry) {
   var $editIcon = document.createElement('i');
   $entryTitle.setAttribute('class', 'list-style');
   $editIcon.setAttribute('class', 'fas fa-pen');
+  $editIcon.setAttribute('ID', 'edit-button');
   var $titleTxt = document.createTextNode(entry.title);
   $entryTitle.appendChild($titleTxt);
-  $entryTitle.appendChild($editIcon);
 
   var $entryContent = document.createElement('p');
   $entryContent.setAttribute('class', 'list-style');
@@ -40,7 +43,9 @@ function journalEntry(entry) {
   $containerDiv.appendChild($columnDiv1);
   $containerDiv.appendChild($columnDiv2);
   $columnDiv1.appendChild($entryImg);
-  $columnDiv2.appendChild($entryTitle);
+  $columnDiv2.appendChild($titleEditContainer);
+  $titleEditContainer.appendChild($entryTitle);
+  $titleEditContainer.appendChild($editIcon);
   $columnDiv2.appendChild($entryContent);
   return $containerDiv;
 }
@@ -109,6 +114,14 @@ $newButton.addEventListener('click', function (event) {
   $entryList.className = 'hidden';
   $formContainer.className = 'container';
   data.view = 'entry-form';
+});
+
+$ul.addEventListener('click', function (event) {
+  var $editEntry = document.getElementById('edit-button');
+  if (event.target === $editEntry) {
+    $entryList.className = 'hidden';
+    $formContainer.className = 'container';
+  }
 });
 
 // var $containerDiv = document.createElement('div');
