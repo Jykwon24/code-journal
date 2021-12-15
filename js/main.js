@@ -117,13 +117,15 @@ $newButton.addEventListener('click', function (event) {
 });
 
 $ul.addEventListener('click', function (event) {
-  var $editEntry = document.querySelector('.edit-button');
+  var $editEntry = document.querySelectorAll('.edit-button');
   var $entryNumOnClick = parseInt(event.target.getAttribute('data-entry-id'));
-  if (event.target === $editEntry) {
-    $entryList.className = 'hidden';
-    $formContainer.className = 'container';
+  for (var i = 0; i < $editEntry.length; i++) {
+    if (event.target === $editEntry[i]) {
+      $entryList.className = 'hidden';
+      $formContainer.className = 'container';
+    }
   }
-  for (var i = 0; i < data.entries.length; i++) {
+  for (i = 0; i < data.entries.length; i++) {
     var dataArr = data.entries[i].entryId;
     if ($entryNumOnClick === dataArr) {
       data.editing = $entryNumOnClick;
