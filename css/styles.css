@@ -27,6 +27,16 @@ h4 {
   margin-left: 0.5rem;
 }
 
+.edit-button {
+  color: mediumslateblue;
+  padding-top: 20px;
+}
+
+.edit-button:hover {
+  color: #4e148c;
+  cursor: pointer;
+}
+
 .purp-header,
 .purp-header1,
 .entry-header {
