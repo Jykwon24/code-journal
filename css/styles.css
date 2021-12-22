@@ -100,6 +100,17 @@ h4 {
   margin-bottom: 2rem;
 }
 
+.button-container-edit {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.deleter {
+  padding-top: 20px;
+  color: red;
+}
+
 .button {
   background-color: #4e148c;
   border-radius: 0.25rem;

@@ -118,10 +118,14 @@ $newButton.addEventListener('click', function (event) {
 $ul.addEventListener('click', function (event) {
   var $editEntry = document.querySelectorAll('.edit-button');
   var $entryNumOnClick = parseInt(event.target.getAttribute('data-entry-id'));
+  var $buttonContainer = document.querySelector('.button-container');
+  var $deleteButton = document.querySelector('.deleter');
   for (var i = 0; i < $editEntry.length; i++) {
     if (event.target === $editEntry[i]) {
       $entryList.className = 'hidden';
       $formContainer.className = 'container';
+      $buttonContainer.className = 'button-container-edit';
+      $deleteButton.className = 'deleter';
     }
   }
   for (i = 0; i < data.entries.length; i++) {
