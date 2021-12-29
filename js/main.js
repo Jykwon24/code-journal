@@ -163,6 +163,24 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 });
 
+var $modal = document.querySelector('.deleter');
+var $alert = document.querySelector('.modal-container');
+// var $cancel = document.querySelector('.confirm');
+var $confirm = document.querySelector('.cancel');
+var $alertCount = 0;
+
+function onOff() {
+  if ($alertCount % 2 === 0) {
+    $alert.className = 'modal-container on';
+  } else {
+    $alert.className = 'modal-container off';
+  }
+  $alertCount += 1;
+}
+
+$modal.addEventListener('click', onOff);
+$confirm.addEventListener('click', onOff);
+
 // var $containerDiv = document.createElement('div');
 // $containerDiv.setAttribute('class', 'new-row');
 
