@@ -107,19 +107,23 @@ $navHeader.addEventListener('click', function (event) {
   }
 });
 
+var $buttonContainer = document.querySelector('.button-container');
+var $deleteButton = document.querySelector('.deleter');
+
 var $newButton = document.querySelector('.purp-header1');
 $newButton.addEventListener('click', function (event) {
   $entryList.className = 'hidden';
   $formContainer.className = 'container';
+  data.editing = null;
   data.view = 'entry-form';
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $buttonContainer.className = 'button-container';
+  $deleteButton.className = 'hidden';
 });
 
 $ul.addEventListener('click', function (event) {
   var $editEntry = document.querySelectorAll('.edit-button');
   var $entryNumOnClick = parseInt(event.target.getAttribute('data-entry-id'));
-  var $buttonContainer = document.querySelector('.button-container');
-  var $deleteButton = document.querySelector('.deleter');
   for (var i = 0; i < $editEntry.length; i++) {
     if (event.target === $editEntry[i]) {
       $entryList.className = 'hidden';
@@ -165,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 var $modal = document.querySelector('.deleter');
 var $alert = document.querySelector('.modal-container');
-// var $cancel = document.querySelector('.confirm');
+var $cancel = document.querySelector('.confirm');
 var $confirm = document.querySelector('.cancel');
 var $alertCount = 0;
 
@@ -180,6 +184,20 @@ function onOff() {
 
 $modal.addEventListener('click', onOff);
 $confirm.addEventListener('click', onOff);
+
+$cancel.addEventListener('click', function (event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.editing.entryId === data.entries[i].entryId) {
+      data.entries.splice([i], 1);
+    }
+  }
+  var $editLi = document.getElementById('' + data.editing.entryId);
+  $editLi.remove();
+  $formContainer.className = 'hidden';
+  $entryList.className = 'new-row container';
+  $entries.className = 'hidden';
+  $alert.className = 'modal-container off';
+});
 
 // var $containerDiv = document.createElement('div');
 // $containerDiv.setAttribute('class', 'new-row');
